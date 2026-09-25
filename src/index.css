@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-mono-term {
+    font-family: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  }
+  .font-mono-code {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .font-segment {
+    font-family: 'Share Tech Mono', 'IBM Plex Mono', monospace;
+  }
+}
+
+/* Subtle modern CRT / Phosphor Glows */
+.glow-amber {
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+.glow-green {
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+}
+
+.glow-white {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+/* Modern sleek scrollbar */
+.term-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.term-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.term-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+.term-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+

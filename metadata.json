@@ -1,0 +1,6 @@
+{
+  "name": "Intel 8085 Simulator & ALS-SDA-85 TALK Serial Monitor",
+  "description": "Full-fledged Intel 8085 microprocessor simulator and ALS-SDA-85 TALK serial monitor terminal with interactive line-assembler, disassembler, memory tools, and trainer kit hardware.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
