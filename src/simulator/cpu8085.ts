@@ -62,8 +62,16 @@ export class CPU8085 {
     this.memory[0x0001] = 0x00;
     this.memory[0x0002] = 0x01;
 
+    // 0008H: RST 1 Vector (Software Breakpoint / Return to Monitor)
+    this.memory[0x0008] = 0x76; // HLT
+
     // 0024H: TRAP (RST 4.5) Vector
     this.memory[0x0024] = 0xc9; // RET
+
+    // 0028H: RST 5 Vector (Software Breakpoint)
+    this.memory[0x0028] = 0x76; // HLT
+
+
 
     // 002CH: RST 5.5 Vector
     this.memory[0x002c] = 0xc9; // RET
@@ -739,6 +747,18 @@ export class CPU8085 {
       }
 
       if (breakpoint !== undefined && this.pc === (breakpoint & 0xffff)) {
+        return {
+          halted: false,
+          hitBreakpoint: true,
+          executed: count,
+          cyclesElapsed: this.cycles - initialCycles,
+        };
+      }
+
+      // Intercept Software Breakpoints commonly used in ALS-SDA-85 kits (RST 1 and RST 5)
+      // If we land on their vector addresses, treat as a breakpoint hit and restore PC from stack
+      if (this.pc === 0x0008 || this.pc === 0x0028) {
+        this.pc = this.pop();
         return {
           halted: false,
           hitBreakpoint: true,
